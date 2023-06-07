@@ -6,6 +6,9 @@ use actix_web::{
 use dotenv::dotenv;
 use sqlx::{postgres::PgPoolOptions, Pool, Postgres, database};
 
+mod service;
+use service::{fetch_users};
+
 pub struct AppState {
     db: Pool<Postgres>
 }
@@ -31,6 +34,7 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .app_data(Data::new(AppState { db: pool.clone() }))
             .service(hello)
+            .service(fetch_users)
     })
     .bind(("127.0.0.1", 8000))?
     .run()
