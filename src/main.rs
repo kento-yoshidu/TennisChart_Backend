@@ -3,7 +3,8 @@ use actix_web::{
     web::{Data},
     Responder, HttpResponse, HttpServer
 };
-use dotenv::dotenv;
+// use dotenv::dotenv;
+use std::env;
 use sqlx::{postgres::PgPoolOptions, Pool, Postgres, database};
 
 mod service;
@@ -20,6 +21,28 @@ pub async fn hello() -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    let port_key = "PORT";
+    let default_port = 3000;
+    let port = match env::var(port_key) {
+        Ok(val) => match val.parse::<u16>() {
+            Ok(port) => port,
+            Err(_) => {
+                println!(
+                    "the port number \"{}\" is invalid. default port will be used.",
+                    val
+                );
+                default_port
+            }
+        },
+        Err(_) => {
+            println!(
+                "\"{}\" is not defined in environment variables. default port will be used.",
+                port_key
+            );
+            default_port
+        }
+    };
+    /*
     dotenv().ok();
 
     let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
@@ -29,14 +52,15 @@ async fn main() -> std::io::Result<()> {
         .connect(&database_url)
         .await
         .expect("Error building a connection");
+    */
 
     HttpServer::new(move || {
         App::new()
-            .app_data(Data::new(AppState { db: pool.clone() }))
+            // .app_data(Data::new(AppState { db: pool.clone() }))
             .service(hello)
-            .service(fetch_users)
+            // .service(fetch_users)
     })
-    .bind(("127.0.0.1", 8000))?
+    .bind(("0.0.0.0", port))?
     .run()
     .await
 }
