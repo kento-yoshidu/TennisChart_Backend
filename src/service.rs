@@ -1,5 +1,5 @@
 use actix_web::{
-    get, post,
+    get, post, web,
     web::{Data, Json, Path},
     Responder, HttpResponse
 };
@@ -23,3 +23,29 @@ pub async fn fetch_users(state: Data<AppState>) -> impl Responder {
         Err(_) => HttpResponse::NotFound().json("No users found"),
     }
 }
+
+#[get("/test")]
+pub async fn test() -> impl Responder {
+    let obj = User {
+        id: 1,
+        name: String::from("test")
+    };
+
+    return web::Json(obj);
+}
+
+
+/*
+#[get("/test")]
+pub async fn fetch_test(state: Data<AppState>) -> Result<impl Responder> {
+    let user = User { id: 1, name: String::from("Roger") };
+    // let json = serde_json::to_string(&user).unwrap();
+
+    let user = User {
+        id: 1,
+        name: String::from("Roger")
+    };
+
+    Ok(web::Json(user))
+}
+*/
