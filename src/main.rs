@@ -7,9 +7,15 @@ use actix_web::{
 use std::env;
 use sqlx::{postgres::PgPoolOptions, Pool, Postgres, database};
 
+use serde::{Serialize};
 mod service;
-use service::{fetch_users};
+use service::{test};
 
+#[derive(Serialize)]
+struct User {
+    id: i32,
+    name: String,
+}
 pub struct AppState {
     db: Pool<Postgres>
 }
@@ -58,7 +64,7 @@ async fn main() -> std::io::Result<()> {
         App::new()
             // .app_data(Data::new(AppState { db: pool.clone() }))
             .service(hello)
-            // .service(fetch_users)
+            .service(test)
     })
     .bind(("0.0.0.0", port))?
     .run()
