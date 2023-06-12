@@ -1,5 +1,7 @@
+use actix_cors::Cors;
 use actix_web::{
     get, App,
+    http::header,
     web::{Data},
     Responder, HttpResponse, HttpServer
 };
@@ -28,7 +30,7 @@ pub async fn hello() -> impl Responder {
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     let port_key = "PORT";
-    let default_port = 3000;
+    let default_port = 8888;
     let port = match env::var(port_key) {
         Ok(val) => match val.parse::<u16>() {
             Ok(port) => port,
@@ -42,8 +44,8 @@ async fn main() -> std::io::Result<()> {
         },
         Err(_) => {
             println!(
-                "\"{}\" is not defined in environment variables. default port will be used.",
-                port_key
+                "\"{}\" is not defined in environment variables. default port {} will be used.",
+                port_key, default_port
             );
             default_port
         }
@@ -62,6 +64,20 @@ async fn main() -> std::io::Result<()> {
 
     HttpServer::new(move || {
         App::new()
+            .wrap(
+                Cors::default()
+                    // 特定のオリジンのみ許可する場合
+                    // .allowed_origin("http://localhost:3000")
+                    // 全てのオリジンを許可する場合
+                    .allowed_origin_fn(|origin, _req_head| {
+                        true
+                    })
+                    .allowed_methods(vec!["GET"])
+                    .allowed_headers(vec![header::AUTHORIZATION, header::ACCEPT])
+                    .allowed_header(header::CONTENT_TYPE)
+                    .supports_credentials()
+                    .max_age(3600),
+            )
             // .app_data(Data::new(AppState { db: pool.clone() }))
             .service(hello)
             .service(test)
