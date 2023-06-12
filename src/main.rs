@@ -1,5 +1,7 @@
+use actix_cors::Cors;
 use actix_web::{
     get, App,
+    http::header,
     web::{Data},
     Responder, HttpResponse, HttpServer
 };
@@ -28,7 +30,7 @@ pub async fn hello() -> impl Responder {
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     let port_key = "PORT";
-    let default_port = 3000;
+    let default_port = 8888;
     let port = match env::var(port_key) {
         Ok(val) => match val.parse::<u16>() {
             Ok(port) => port,
@@ -62,6 +64,15 @@ async fn main() -> std::io::Result<()> {
 
     HttpServer::new(move || {
         App::new()
+            .wrap(
+                Cors::default()
+                    .allowed_origin("http://localhost:3000")
+                    .allowed_methods(vec!["GET"])
+                    .allowed_headers(vec![header::AUTHORIZATION, header::ACCEPT])
+                    .allowed_header(header::CONTENT_TYPE)
+                    .supports_credentials()
+                    .max_age(3600),
+            )
             // .app_data(Data::new(AppState { db: pool.clone() }))
             .service(hello)
             .service(test)
