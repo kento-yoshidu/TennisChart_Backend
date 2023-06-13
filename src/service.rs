@@ -7,7 +7,7 @@ use serde::{Deserialize, Serialize};
 use sqlx::{self, FromRow};
 use crate::AppState;
 
-#[derive(Serialize, FromRow)]
+#[derive(Serialize, FromRow, Debug)]
 struct User {
     id: i32,
     name: String,
@@ -19,7 +19,10 @@ pub async fn fetch_users(state: Data<AppState>) -> impl Responder {
         .fetch_all(&state.db)
         .await
     {
-        Ok(users) => HttpResponse::Ok().json(users),
+        Ok(users) => {
+            println!("{:?}", users);
+            HttpResponse::Ok().json(users)
+        },
         Err(_) => HttpResponse::NotFound().json("No users found"),
     }
 }
@@ -28,10 +31,27 @@ pub async fn fetch_users(state: Data<AppState>) -> impl Responder {
 pub async fn test() -> impl Responder {
     let obj = User {
         id: 1,
-        name: String::from("test")
+        name: String::from("Roger Federer")
     };
 
-    return web::Json(obj);
+    let obj2 = User {
+        id: 2,
+        name: String::from("Rafael Nadal")
+    };
+
+    let obj3 = User {
+        id: 3,
+        name: String::from("Novak Dokovic")
+    };
+
+    let obj4 = User {
+        id: 4,
+        name: String::from("Andy Murray")
+    };
+
+    let vec = vec![obj, obj2, obj3, obj4];
+
+    return web::Json(vec);
 }
 
 

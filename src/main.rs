@@ -11,7 +11,7 @@ use sqlx::{postgres::PgPoolOptions, Pool, Postgres, database};
 
 use serde::{Serialize};
 mod service;
-use service::{test};
+use service::{fetch_users, test};
 
 #[derive(Serialize)]
 struct User {
@@ -50,9 +50,10 @@ async fn main() -> std::io::Result<()> {
             default_port
         }
     };
-    /*
-    dotenv().ok();
 
+    // dotenv().ok();
+
+    /*
     let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
 
     let pool = PgPoolOptions::new()
