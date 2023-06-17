@@ -11,7 +11,7 @@ use sqlx::{postgres::PgPoolOptions, Pool, Postgres, database};
 
 use serde::{Serialize};
 mod service;
-use service::{fetch_users, test, gs_1};
+use service::{fetch_users, gs1, gs2};
 
 #[derive(Serialize)]
 struct User {
@@ -81,8 +81,8 @@ async fn main() -> std::io::Result<()> {
             )
             // .app_data(Data::new(AppState { db: pool.clone() }))
             .service(hello)
-            .service(gs_1)
-            .service(test)
+            .service(gs1)
+            .service(gs2)
     })
     .bind(("0.0.0.0", port))?
     .run()

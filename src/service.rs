@@ -65,7 +65,7 @@ pub async fn test() -> impl Responder {
 }
 
 #[get("/gs1")]
-pub async fn gs_1() -> impl Responder {
+pub async fn gs1() -> impl Responder {
     let year2004 = DataA {
         year: 2004,
         roger_federer: 3,
@@ -238,12 +238,199 @@ pub async fn gs_1() -> impl Responder {
     };
 
     let year2023 = DataA {
-        year: 2020,
+        year: 2023,
         roger_federer: 0,
         rafael_nadal: 0,
         novak_dokovic: 2,
         andy_murray: 0,
         other: 0
+    };
+
+    let vec = vec![year2004, year2005, year2006, year2007, year2008, year2009, year2010, year2011, year2012, year2013, year2014, year2015, year2016, year2017, year2018, year2019, year2020, year2021, year2022, year2023];
+
+    return  web::Json(vec);
+}
+
+#[get("/gs2")]
+pub async fn gs2() -> impl Responder {
+    let year2004 = DataA {
+        year: 2004,
+        roger_federer: 3,
+        rafael_nadal: 0,
+        novak_dokovic: 0,
+        andy_murray: 0,
+        other: 5
+    };
+
+    let year2005 = DataA {
+        year: 2005,
+        roger_federer: 2,
+        rafael_nadal: 1,
+        novak_dokovic: 0,
+        andy_murray: 0,
+        other: 5
+    };
+
+    let year2006 = DataA {
+        year: 2006,
+        roger_federer: 4,
+        rafael_nadal: 2,
+        novak_dokovic: 0,
+        andy_murray: 0,
+        other: 2
+    };
+
+    let year2007 = DataA {
+        year: 2007,
+        roger_federer: 4,
+        rafael_nadal: 2,
+        novak_dokovic: 1,
+        andy_murray: 0,
+        other: 1
+    };
+
+    let year2008 = DataA {
+        year: 2008,
+        roger_federer: 3,
+        rafael_nadal: 2,
+        novak_dokovic: 1,
+        andy_murray: 1,
+        other: 1
+    };
+
+    let year2009 = DataA {
+        year: 2009,
+        roger_federer: 4,
+        rafael_nadal: 1,
+        novak_dokovic: 0,
+        andy_murray: 0,
+        other: 3
+    };
+
+    let year2010 = DataA {
+        year: 2010,
+        roger_federer: 1,
+        rafael_nadal: 3,
+        novak_dokovic: 2,
+        andy_murray: 1,
+        other: 1
+    };
+
+    let year2011 = DataA {
+        year: 2011,
+        roger_federer: 1,
+        rafael_nadal: 3,
+        novak_dokovic: 3,
+        andy_murray: 1,
+        other: 0
+    };
+
+    let year2012 = DataA {
+        year: 2012,
+        roger_federer: 1,
+        rafael_nadal: 2,
+        novak_dokovic: 3,
+        andy_murray: 2,
+        other: 0
+    };
+
+    let year2013 = DataA {
+        year: 2013,
+        roger_federer: 0,
+        rafael_nadal: 2,
+        novak_dokovic: 3,
+        andy_murray: 2,
+        other: 1
+    };
+
+    let year2014 = DataA {
+        year: 2014,
+        roger_federer: 1,
+        rafael_nadal: 2,
+        novak_dokovic: 2,
+        andy_murray: 0,
+        other: 3
+    };
+
+    let year2015 = DataA {
+        year: 2015,
+        roger_federer: 2,
+        rafael_nadal: 0,
+        novak_dokovic: 3,
+        andy_murray: 1,
+        other: 2
+    };
+
+    let year2016 = DataA {
+        year: 2016,
+        roger_federer: 0,
+        rafael_nadal: 0,
+        novak_dokovic: 3,
+        andy_murray: 3,
+        other: 2
+    };
+
+    let year2017 = DataA {
+        year: 2017,
+        roger_federer: 2,
+        rafael_nadal: 3,
+        novak_dokovic: 0,
+        andy_murray: 0,
+        other: 3
+    };
+
+    let year2018 = DataA {
+        year: 2018,
+        roger_federer: 1,
+        rafael_nadal: 2,
+        novak_dokovic: 2,
+        andy_murray: 0,
+        other: 3
+    };
+
+    let year2019 = DataA {
+        year: 2019,
+        roger_federer: 1,
+        rafael_nadal: 3,
+        novak_dokovic: 2,
+        andy_murray: 0,
+        other: 2
+    };
+
+    let year2020 = DataA {
+        year: 2020,
+        roger_federer: 0,
+        rafael_nadal: 1,
+        novak_dokovic: 2,
+        andy_murray: 0,
+        other: 3
+    };
+
+    let year2021 = DataA {
+        year: 2021,
+        roger_federer: 0,
+        rafael_nadal: 0,
+        novak_dokovic: 3,
+        andy_murray: 0,
+        other: 5
+    };
+
+    let year2022 = DataA {
+        year: 2022,
+        roger_federer: 0,
+        rafael_nadal: 2,
+        novak_dokovic: 1,
+        andy_murray: 0,
+        other: 5
+    };
+
+    let year2023 = DataA {
+        year: 2023,
+        roger_federer: 0,
+        rafael_nadal: 0,
+        novak_dokovic: 2,
+        andy_murray: 0,
+        other: 2
     };
 
     let vec = vec![year2004, year2005, year2006, year2007, year2008, year2009, year2010, year2011, year2012, year2013, year2014, year2015, year2016, year2017, year2018, year2019, year2020, year2021, year2022, year2023];
