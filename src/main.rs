@@ -11,7 +11,7 @@ use sqlx::{postgres::PgPoolOptions, Pool, Postgres, database};
 
 use serde::{Serialize};
 mod service;
-use service::{fetch_users, gs1, gs2};
+use service::{gs1, gs2, gsms};
 
 #[derive(Serialize)]
 struct User {
@@ -70,7 +70,7 @@ async fn main() -> std::io::Result<()> {
                     // 特定のオリジンのみ許可する場合
                     // .allowed_origin("http://localhost:3000")
                     // 全てのオリジンを許可する場合
-                    .allowed_origin_fn(|origin, _req_head| {
+                    .allowed_origin_fn(|_origin, _req_head| {
                         true
                     })
                     .allowed_methods(vec!["GET"])
@@ -83,6 +83,7 @@ async fn main() -> std::io::Result<()> {
             .service(hello)
             .service(gs1)
             .service(gs2)
+            .service(gsms)
     })
     .bind(("0.0.0.0", port))?
     .run()

@@ -66,6 +66,15 @@ pub async fn test() -> impl Responder {
 
 #[get("/gs1")]
 pub async fn gs1() -> impl Responder {
+    let year2003 = DataA {
+        year: 2003,
+        roger_federer: 1,
+        rafael_nadal: 0,
+        novak_dokovic: 0,
+        andy_murray: 0,
+        other: 3
+    };
+
     let year2004 = DataA {
         year: 2004,
         roger_federer: 3,
@@ -246,13 +255,22 @@ pub async fn gs1() -> impl Responder {
         other: 0
     };
 
-    let vec = vec![year2004, year2005, year2006, year2007, year2008, year2009, year2010, year2011, year2012, year2013, year2014, year2015, year2016, year2017, year2018, year2019, year2020, year2021, year2022, year2023];
+    let vec = vec![year2003, year2004, year2005, year2006, year2007, year2008, year2009, year2010, year2011, year2012, year2013, year2014, year2015, year2016, year2017, year2018, year2019, year2020, year2021, year2022, year2023];
 
-    return  web::Json(vec);
+    web::Json(vec)
 }
 
 #[get("/gs2")]
 pub async fn gs2() -> impl Responder {
+    let year2003 = DataA {
+        year: 2003,
+        roger_federer: 1,
+        rafael_nadal: 0,
+        novak_dokovic: 0,
+        andy_murray: 0,
+        other: 7
+    };
+
     let year2004 = DataA {
         year: 2004,
         roger_federer: 3,
@@ -433,9 +451,88 @@ pub async fn gs2() -> impl Responder {
         other: 2
     };
 
-    let vec = vec![year2004, year2005, year2006, year2007, year2008, year2009, year2010, year2011, year2012, year2013, year2014, year2015, year2016, year2017, year2018, year2019, year2020, year2021, year2022, year2023];
+    let vec = vec![year2003, year2004, year2005, year2006, year2007, year2008, year2009, year2010, year2011, year2012, year2013, year2014, year2015, year2016, year2017, year2018, year2019, year2020, year2021, year2022, year2023];
 
-    return  web::Json(vec);
+    web::Json(vec)
+}
+
+#[get("/gsms")]
+pub async fn gsms() -> impl Responder {
+    let year2003 = DataA {
+        year: 2003,
+        roger_federer: 2,
+        rafael_nadal: 0,
+        novak_dokovic: 0,
+        andy_murray: 0,
+        other: 12
+    };
+
+    let year2004 = DataA {
+        year: 2004,
+        roger_federer: 6,
+        rafael_nadal: 0,
+        novak_dokovic: 0,
+        andy_murray: 0,
+        other: 8
+    };
+
+    let year2005 = DataA {
+        year: 2005,
+        roger_federer: 6,
+        rafael_nadal: 5,
+        novak_dokovic: 0,
+        andy_murray: 0,
+        other: 3
+    };
+
+    let year2006 = DataA {
+        year: 2006,
+        roger_federer: 8,
+        rafael_nadal: 3,
+        novak_dokovic: 0,
+        andy_murray: 0,
+        other: 3
+    };
+
+    let year2007 = DataA {
+        year: 2007,
+        roger_federer: 6,
+        rafael_nadal: 4,
+        novak_dokovic: 2,
+        andy_murray: 0,
+        other: 2
+    };
+
+    let year2008 = DataA {
+        year: 2008,
+        roger_federer: 1,
+        rafael_nadal: 5,
+        novak_dokovic: 4,
+        andy_murray: 2,
+        other: 2
+    };
+
+    let year2009 = DataA {
+        year: 2009,
+        roger_federer: 4,
+        rafael_nadal: 4,
+        novak_dokovic: 1,
+        andy_murray: 2,
+        other: 3
+    };
+
+    let year2010 = DataA {
+        year: 2010,
+        roger_federer: 3,
+        rafael_nadal: 6,
+        novak_dokovic: 0,
+        andy_murray: 2,
+        other: 3
+    };
+
+    let vec = vec![year2003, year2004, year2005, year2006, year2007, year2008, year2009, year2010];
+
+    web::Json(vec)
 }
 
 /*
