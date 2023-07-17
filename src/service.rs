@@ -252,7 +252,7 @@ pub async fn gs1() -> impl Responder {
         rafael_nadal: 0,
         novak_dokovic: 2,
         andy_murray: 0,
-        other: 0
+        other: 1
     };
 
     let vec = vec![year2003, year2004, year2005, year2006, year2007, year2008, year2009, year2010, year2011, year2012, year2013, year2014, year2015, year2016, year2017, year2018, year2019, year2020, year2021, year2022, year2023];
@@ -446,9 +446,9 @@ pub async fn gs2() -> impl Responder {
         year: 2023,
         roger_federer: 0,
         rafael_nadal: 0,
-        novak_dokovic: 2,
+        novak_dokovic: 3,
         andy_murray: 0,
-        other: 2
+        other: 3
     };
 
     let vec = vec![year2003, year2004, year2005, year2006, year2007, year2008, year2009, year2010, year2011, year2012, year2013, year2014, year2015, year2016, year2017, year2018, year2019, year2020, year2021, year2022, year2023];
