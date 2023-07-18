@@ -64,6 +64,7 @@ pub async fn test() -> impl Responder {
     return web::Json(vec);
 }
 
+// GS優勝数
 #[get("/gs1")]
 pub async fn gs1() -> impl Responder {
     let year2003 = DataA {
@@ -170,8 +171,8 @@ pub async fn gs1() -> impl Responder {
         roger_federer: 0,
         rafael_nadal: 1,
         novak_dokovic: 1,
-        andy_murray: 1,
-        other: 1
+        andy_murray: 0,
+        other: 2
     };
 
     let year2015 = DataA {
